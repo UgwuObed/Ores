@@ -6,12 +6,14 @@
     width: 1366px;
     height: 578px;
     padding-top: 40px;
+    
 }
 
 .logo {
     display: inline-block;
     vertical-align: middle;
     margin-left: 67px; 
+    
   }
   
   .logo img {
@@ -23,12 +25,13 @@
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px; 
-    font-family: 'Indie Flower' , 'Inder', 'IM Fell DW Pica',;
+    font-family: 'Inder';
+    margin-bottom: 30px;
   }
-  
   .ore-letter {
     font-size: 24px; 
     font-weight: bold;
+    font-family: 'Inder';
   }
   
   .ore-letter:nth-child(1) {
@@ -57,6 +60,10 @@
     
   }
 
+  .navigation{
+    margin-top: -130px;
+  }
+
   .nav-links{
     display: inline-block;
     vertical-align: middle;
@@ -69,26 +76,34 @@
   }
   
   .nav-link {
-    margin: 0;
-    padding: 0;
+    box-shadow: inset 0 0 0 0 #800080;
     text-decoration: none;
-    color: #000000;
-    transition: color 0.3s; 
+    color: #800080;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    transition: color .15s ease-in-out, box-shadow .15s ease-in-out; 
   }
   
   .nav-link:hover {
+    box-shadow: inset 100px 0 0 0 #800080;
+    color: white;
+  }
+
+
+  .nav-link1 {
+    box-shadow: inset 0 0 0 0 #800080;
     color: #800080;
-    font-size: 18px; 
+    text-decoration: none;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    transition: color .15s ease-in-out, box-shadow .15s ease-in-out;
   }
-  .nav-link:hover::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #800080;
+  
+  .nav-link1:hover {
+    box-shadow: inset 100px 0 0 0 #800080;
+    color: white; 
   }
+  
 
   .search-bar {
     position: relative;
@@ -123,4 +138,96 @@
   .search-bar input:hover::placeholder,
   .search-bar input:focus::placeholder {
     color:rgba(128, 0, 128, 0.52);
+    font-family: 'Inder';
   }
+  
+  .button-space {
+    width: 79px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  
+  .user-buttons {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 200px;
+    font-family: 'Inder';
+  }
+  
+
+  
+  .login-button {
+    padding: 12px 28px;
+    border-radius: 45px;
+    border: 1px solid #800080;
+    background-color: #800080; 
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inder';
+    margin-right: 30px;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+  }
+
+  .signup-button{
+    padding: 12px 21px;
+    font-family: 'Inder';
+    border-radius: 45px;
+    border: 1px solid #800080;
+    background: #800080;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+  }
+
+.center-left{
+    margin-left: 55px;
+    margin-top: -130px;
+
+}
+
+.ore-highlight {
+
+    color: #800080;
+    font-family: IM FELL DW Pica;
+    font-size: 128px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.ore-text{
+
+color: #000;
+font-family: Kameron;
+color: #000;
+font-family: Kameron;
+font-size: 80px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.calo{
+
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.descrip{
+    color: #575353;
+    word-wrap: break-word;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    margin-top: -30px;
+    margin-left: 15px;
+}
