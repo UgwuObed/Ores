@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Inder'; 
+    src: url('https://fonts.gstatic.com/s/inder/v10/w8gUH2YoQe8_4vq6.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Indie Flower'; 
+    src: url('https://fonts.gstatic.com/s/indieflower/v12/m8JVjfNVeKWVnh3QMuKkFcZluOC2HA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'IM Fell DW Pica', 'Inder', 'Indie Flower';
+    src: url('https://fonts.gstatic.com/s/imfelldwpica/v11/3XFtErwl05Ad_vSCF3lK5FgFrp.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(99deg, rgba(128, 0, 128, 0.13) 24.29%, rgba(128, 0, 128, 0.17) 58.64%, rgba(128, 0, 128, 0.00) 100%);
+  font-family: 'Inder', sans-serif;
+
+}

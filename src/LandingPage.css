@@ -1,0 +1,126 @@
+.landing-page {
+    background-image: url('@/assets/bg3.png'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right top;
+    width: 1366px;
+    height: 578px;
+    padding-top: 40px;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 67px; 
+  }
+  
+  .logo img {
+    width: 50px; 
+    height: auto;
+  }
+  
+  .ore-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; 
+    font-family: 'Indie Flower' , 'Inder', 'IM Fell DW Pica',;
+  }
+  
+  .ore-letter {
+    font-size: 24px; 
+    font-weight: bold;
+  }
+  
+  .ore-letter:nth-child(1) {
+    color: #800080; 
+  }
+  
+  .ore-letter:nth-child(2) {
+    color: rgba(128, 0, 128, 0.52); 
+  }
+  
+  .ore-letter:nth-child(3) {
+    color: #800080; 
+  }
+  
+  .ore-letter:nth-child(4) {
+    color: rgba(128, 0, 128, 0.52);
+  }
+  
+  .ore-letter:nth-child(5) {
+    color: #800080;
+  }
+
+  .navbar {
+    display: inline-block;
+    vertical-align: middle;
+    
+  }
+
+  .nav-links{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 86px;
+    gap: 20px;  
+  }
+  .link-space {
+    margin-left: 70px; 
+    display: inline-block;
+  }
+  
+  .nav-link {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s; 
+  }
+  
+  .nav-link:hover {
+    color: #800080;
+    font-size: 18px; 
+  }
+  .nav-link:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #800080;
+  }
+
+  .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 76px; 
+  }
+  
+  .search-bar input {
+    padding: 8px 30px 8px 10px; 
+    border: 1px solid rgba(128, 0, 128, 0.52);
+    border-radius: 4px;
+    color: rgba(128, 0, 128, 0.52);
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+  }
+  
+  
+  .search-bar input::placeholder {
+    color: transparent;
+  }
+  
+  
+  .search-bar input:hover::placeholder,
+  .search-bar input:focus::placeholder {
+    color:rgba(128, 0, 128, 0.52);
+  }
