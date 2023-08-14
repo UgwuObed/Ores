@@ -1,6 +1,6 @@
 <template>
     <div class="landing-page">
-        <div class="navigation">
+        <div class="navigation fade-in-left">
         <div class="logo">
             <img src="@/assets/logo1.png" alt="Your Logo">
           </div>
@@ -31,13 +31,21 @@
                 <button class="login-button">Login</button>
               </div>
             </div>
-              <div class="center-left">
-                <h2 class="ore-text">
-                  <span class="ore-highlight">Ore’s</span><br />
-                  Health Place
-                </h2>
-                <p class="descrip">Get fresh and tasty continental and intercontinental <br>recipes and how to make them, check and calculate <br>their <span class="calo">calorie</span> count </p>
-              </div>
+            <div class="center-left" :class="{ 'ease-in': animate }">
+              <h2 class="ore-text fade-in-left">
+                <span class="ore-highlight">Ore’s</span><br />
+                Health Place
+              </h2>
+              <p class="descrip fade-in-left">Get fresh and tasty continental and intercontinental <br>recipes and how to make them, check and calculate <br>their <span class="calo">calorie</span> count </p>
+            </div>
+            <div class="learn fade-in-up" :class="{ 'ease-in': animate }">
+              <button class="learn-more">Learn More</button>
+            </div>
+            <ul class="thumb" :class="{ 'ease-in': animate }">
+              <li><a href="#"><img src="@/assets/pg1.png"></a></li>
+              <li><a href="#"><img src="@/assets/pg2.png"></a></li>
+              <li><a href="#"><img src="@/assets/pg3.png"></a></li>
+            </ul>
       <router-view />
       
     </div>
@@ -47,11 +55,29 @@
   <script>
   export default {
     name: 'LandingPage',
+    data() {
+    return {
+      animate: false,
+    };
+  },
+  mounted() {
+    // Trigger the animation when the component is mounted
+    this.animate = true;
+  },
   };
   </script>
   
   <style scoped>
   @import '@/LandingPage.css';
+  /* Apply the common animation class when 'animate' is true */
+.ease-in {
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+/* Apply the specific animation class to the description */
+.fade-in-left {
+  animation: fadeInLeft 1s ease-in-out;
+}
   </style>
 
 
