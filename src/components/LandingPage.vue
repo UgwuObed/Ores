@@ -26,9 +26,10 @@
             <router-link to="/contact" class="nav-link1">Contact</router-link>
               </div>
               <div class="user-buttons">
-                <button class="signup-button">Sign Up</button>
+                <router-link to="/register" class="signup-button"><button class="signup-button">Sign Up</button></router-link>
                 <div class="button-space"></div>
-                <button class="login-button">Login</button>
+                
+                <router-link to="/login"><button class="login-button">Login</button></router-link>
               </div>
             </div>
             <div class="center-left" :class="{ 'ease-in': animate }">
@@ -61,7 +62,7 @@
     };
   },
   mounted() {
-    // Trigger the animation when the component is mounted
+
     this.animate = true;
   },
   };
@@ -69,12 +70,11 @@
   
   <style scoped>
   @import '@/LandingPage.css';
-  /* Apply the common animation class when 'animate' is true */
+
 .ease-in {
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
-/* Apply the specific animation class to the description */
 .fade-in-left {
   animation: fadeInLeft 1s ease-in-out;
 }
