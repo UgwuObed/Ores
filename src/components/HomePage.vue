@@ -1,50 +1,44 @@
 <template>
-      <HeaderWeb />
-    <SearchBar />
-  <div class="home-page">
-
-    <div class="content">
-      <SideNavbar />
-    </div>
-    <h1>Popular Recipes</h1>
-    <div class="card-grid">
-      <!-- First set of cards -->
-      <div
-        v-for="(card, index) in cards"
-        :key="'set1-' + index"
-        class="card"
-        @mouseover="elevateCard(index)"
-        @mouseleave="resetCardElevation(index)"
-        @click="showCardPopup(index)"
-      >
-        <img :src="card.image" alt="Card Image" />
-        <h3>{{ card.title }}</h3>
+  <div>
+    <HeaderWeb />
+    <SearchBar @search-results="fetchSearchResults" />
+    <div class="home-page">
+      <div class="content">
+        <SideNavbar />
       </div>
-    </div>
-
-    <h1>Popular Restaurants</h1>
-    <div class="card-grid">
-      
-      <div
-        v-for="(card, index) in secondSetCards"
-        :key="'set2-' + index"
-        class="card"
-        @mouseover="elevateCard(index)"
-        @mouseleave="resetCardElevation(index)"
-        @click="showCardPopup(index + cards.length)"
-      >
-        <img :src="card.image" alt="Card Image" />
-        <h3>{{ card.title }}</h3>
+      <h1>Search Results</h1>
+      <div class="card-grid">
+        <div
+          v-for="(card, index) in cards"
+          :key="'search-' + index"
+          class="card"
+          @click="showCardPopup(index)"
+        >
+          <img :src="card.image" alt="Card Image" />
+          <h3>{{ card.title }}</h3>
+        </div>
       </div>
-    </div>
-
-    <div class="card-popup" v-if="selectedCardIndex !== null">
-      <div class="card-popup-content">
-        <button class="cancel-button" @click="closeCardPopup">
-          <span class="material-icons">cancel</span>
-        </button>
-        <h2>{{ allCards[selectedCardIndex].title }}</h2>
-        <p>{{ allCards[selectedCardIndex].description }}</p>
+      <div class="card-popup" v-if="selectedCardIndex !== null">
+        <div class="card-popup-content">
+          <button class="cancel-button" @click="closeCardPopup">
+            <span class="material-icons">cancel</span>
+          </button>
+          <h2>{{ allCards[selectedCardIndex].title }}</h2>
+          <p>Calories: {{ allCards[selectedCardIndex].calories }}</p>
+          <p>Yield: {{ allCards[selectedCardIndex].yield }}</p>
+          <img :src="allCards[selectedCardIndex].image" alt="Recipe Image" @click="showDetailsPopup" />
+        </div>
+      </div>
+      <div class="details-popup" v-if="detailsPopupOpen">
+        <div class="details-popup-content">
+          <button class="cancel-button" @click="closeDetailsPopup">
+            <span class="material-icons">cancel</span>
+          </button>
+          <h2>{{ allCards[selectedCardIndex].title }}</h2>
+          <p>Calories: {{ allCards[selectedCardIndex].calories }}</p>
+          <p>Yield: {{ allCards[selectedCardIndex].yield }}</p>
+          <!-- Add more details here -->
+        </div>
       </div>
     </div>
   </div>
@@ -63,78 +57,59 @@ export default {
   },
   data() {
     return {
-      cards: [
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-        {
-          title: "Card 2",
-          description: "Description for Card 2",
-          image: "card2.jpg",
-        },
-        
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-      ],
-      secondSetCards: [
-        {
-          title: "Second Card 1",
-          description: "Description for Second Card 1",
-          image: "second-card1.jpg",
-        },
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-       
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-
-        {
-          title: "Second Card 2",
-          description: "Description for Second Card 2",
-          image: "second-card2.jpg",
-        },
-      ],
+      cards: [],
       selectedCardIndex: null,
+      detailsPopupOpen: false,
     };
   },
-  computed: {
-    allCards() {
-      return [...this.cards, ...this.secondSetCards];
-    },
-  },
   methods: {
-    elevateCard(index) {
-      this.allCards[index].elevated = true;
-    },
-    resetCardElevation(index) {
-      this.allCards[index].elevated = false;
-    },
     showCardPopup(index) {
       this.selectedCardIndex = index;
+      this.detailsPopupOpen = false; // Close the details popup when showing a new card popup
     },
     closeCardPopup() {
       this.selectedCardIndex = null;
     },
+    showDetailsPopup() {
+      this.detailsPopupOpen = true;
+    },
+    closeDetailsPopup() {
+      this.detailsPopupOpen = false;
+    },
+    fetchSearchResults(results) {
+      // This method is called when search results are received
+      this.updateCards(results);
+    },
+    updateCards(results) {
+      if (Array.isArray(results)) {
+        this.cards = results.map(card => ({
+          title: card.title,
+          image: card.image_url,
+          calories: card.calories,
+          yield: card.yield,
+        }));
+      } else if (typeof results === 'object') {
+        this.cards = [
+          {
+            title: results.title,
+            image: results.image_url,
+            calories: results.calories,
+            yield: results.yield,
+          },
+        ];
+      }
+    },
+  },
+  computed: {
+    allCards() {
+      return this.cards;
+    },
   },
 };
 </script>
-  
+
+
+
   <style scoped>
 
   .home-page {

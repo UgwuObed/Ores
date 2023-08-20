@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar">
-    <input type="text" placeholder="Search" />
-    <button>Search</button>
+    <input v-model="searchQuery" type="text" placeholder="Search" />
+    <button @click="searchRecipes">Search</button>
   </div>
 </template>
 
@@ -34,12 +34,29 @@ button {
 }
 </style>
 
+<script>
+import axios from 'axios';
 
-  
-  <script>
-  export default {
-    name: 'SearchBar', 
-    
-  };
-  </script>
+export default {
+  name: 'SearchBar',
+  data() {
+    return {
+      searchQuery: '',
+    };
+  },
+  methods: {
+    async searchRecipes() {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/recipes/search?q=${this.searchQuery}`);
+        const results = response.data; // Assuming the API response is an array of recipes
+        this.$emit('search-results', results); // Emit an event with the fetched data
+      } catch (error) {
+        console.error('Error searching recipes:', error);
+        // Handle the error
+      }
+    },
+  },
+};
+</script>
+
   

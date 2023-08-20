@@ -1,59 +1,58 @@
 <template>
-    <div class="wrapper">
-      <div class="inner">
-        <div class="card">
-          <h3>Login</h3><router-link to="/register" class="signup-link">New Here? Sign Up</router-link><br><br>
-          <form @submit.prevent="submitForm" class="login-form">
-            <div class="form-wrapper">
-              <label for="email">Email</label>
-              <input type="email" id="email" v-model="email" class="form-control1" required>
-            </div>
-            <div class="form-wrapper">
-              <label for="password">Password</label>
-              <input type="password" id="password" v-model="password" class="form-control1" required>
-            </div>
-            <div class="button-wrapper">
-              <button type="submit">Login</button>
-            </div>
-          </form>
-        </div>
+  <div class="wrapper">
+    <div class="inner">
+      <div class="card">
+        <h3>Login</h3>
+        <router-link to="/register" class="signup-link">New Here? Sign Up</router-link><br><br>
+        <form @submit.prevent="submitForm" class="login-form">
+          <div class="form-wrapper">
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="email" class="form-control1" required>
+          </div>
+          <div class="form-wrapper">
+            <label for="password">Password</label>
+            <input type="password" id="password" v-model="password" class="form-control1" required>
+          </div>
+          <div class="button-wrapper">
+            <button type="submit">Login</button>
+          </div>
+        </form>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'RegisterPage',
-    data() {
-      return {
-        backgroundStyle: {
-  
-        },
-        email: '',
-        password: '',
-        confirmPassword: '',
-        
-      };
-    },
-    methods: {
-      submitForm() {
-        
-        if (!this.validateForm()) {
-          return; 
-        }
-  
-       
-        console.log('Form submitted:', {
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'LoginPage',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        const response = await axios.post('http://localhost:8000/api/login', {
           email: this.email,
           password: this.password,
         });
-      },
-      validateForm() {
-        return true;
-      },
+
+        // Handle success response and redirection here
+        console.log(response.data);
+        this.$router.push('/home'); // Redirect to the desired route upon successful login
+      } catch (error) {
+        console.error('Login failed:', error);
+        // Handle login error here
+      }
     },
-  };
-  </script>
+  },
+};
+</script>
+
   
   <style scoped>
   .wrapper {

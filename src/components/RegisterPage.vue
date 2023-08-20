@@ -2,8 +2,9 @@
   <div class="wrapper">
     <div class="inner">
       <div class="card">
-        <h3>Sign Up</h3><router-link to="/login" class="login-link">Already have an account? Log in</router-link><br><br>
-        <form @submit.prevent="submitForm" class="registration-form">
+        <h3>Sign Up</h3>
+        <router-link to="/login" class="login-link">Already have an account? Log in</router-link><br><br>
+        <form @submit.prevent="registerUser" class="registration-form">
           <div class="form-group">
             <div class="form-wrapper">
               <label for="firstName">First Name</label>
@@ -42,13 +43,12 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'RegisterPage',
   data() {
     return {
-      backgroundStyle: {
-
-      },
       firstName: '',
       lastName: '',
       email: '',
@@ -57,29 +57,30 @@ export default {
       acceptTerms: false,
     };
   },
-  methods: {
-    submitForm() {
-     
-      if (!this.validateForm()) {
-        return; 
-      }
-
-      
-      console.log('Form submitted:', {
-        firstName: this.firstName,
-        lastName: this.lastName,
+ methods: {
+  async registerUser() {
+    try {
+      const response = await axios.post('http://localhost:8000/api/register', {
+        first_name: this.firstName,
+        last_name: this.lastName,
         email: this.email,
         password: this.password,
-        acceptTerms: this.acceptTerms,
+        confirm_password: this.confirmPassword,
       });
-    },
-    validateForm() {
-     
-      return true; 
-    },
+      console.log(response.data);
+      // Optionally, you can perform actions after successful registration
+
+      // Redirect the user to a different route after successful registration
+      this.$router.push('/home'); // Change '/success' to your desired route
+    } catch (error) {
+      console.error('Registration failed:', error);
+      // Handle registration error here
+    }
   },
-};
+},
+}
 </script>
+
 
 <style scoped>
 .wrapper {
